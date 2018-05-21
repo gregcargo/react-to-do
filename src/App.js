@@ -33,10 +33,11 @@ class App extends Component {
     this.setState({ todos: todos });
   }
 
-    deleteTodo(index) { 
-    const todos = this.state.todos.filter((item) => item !== todo );
-    const todo = todos[index]; 
-    this.setState({ todos: todos }); 
+    deleteTodo(index) {
+    const todos = this.state.todos.slice(); 
+    const todo = todos[index];   
+    const newTodos = todos.filter((item) => item !== todo );
+    this.setState({ todos: newTodos }); 
   }
  
   render() {
@@ -51,7 +52,6 @@ class App extends Component {
           <input type="text" value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) } />
           <input type="submit" />
         </form>
-        <button onClick={this.props.deleteTodo}>Delete</button>
       </div>
     );
   }
